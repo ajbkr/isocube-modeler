@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+<style>
+body, html {
+  background: #333;
+  color: #ccc;
+  font-family: sans-serif;
+}
+
+#main {
+  display: flex;
+  flex-flow: row;
+  margin: 0;
+  min-height: 36rem;
+  padding: 0
+}
+
+#main > article {
+  flex: 1 2;
+  order: 2
+}
+
+#main > nav {
+  flex: 1 1;
+  order: 1
+}
+
+#main > aside {
+  flex: 1 3;
+  order: 3
+}
+
+header, footer { display: block }
+
+footer { font-size: 0.6rem }
+
+/******************************************************************************/
+
+h6 { margin-bottom: 0.5rem }
+
+#grid {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJ0lEQVQYV2M8c+bM//T0dAYYYDQ2Nv4P5zEwMMAFZs6cyQBSiaECAP+NDGXeWMzVAAAAAElFTkSuQmCC) repeat;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  cursor: crosshair
+}
+
+.palette {
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000
+}
+</style>
+    <title>Isocube Modeler</title>
+  </head>
+  <body>
+    <header>
+      <h1>Isocube Modeler</h1>
+    </header>
+    <div id="main">
+      <article>
+        <h6>Grid</h6>
+        <canvas id="grid" width="256" height="256">
+          ...
+        </canvas>
+      </article>
+      <nav>
+        <div id="color-picker">
+          <h6>Palette</h6>
+          <canvas class="palette" width="128" height="128">
+            ...
+          </canvas>
+        </div>
+      </nav>
+      <aside>
+        <h6>Preview</h6>
+        <canvas id="preview" width="480" height="360">
+          ...
+        </canvas>
+      </aside>
+    </div>
+    <footer>
+      &copy; 2017 Andrew J. Baker
+    </footer>
+    <script src="bundle.js"></script>
+  </body>
+</html>
