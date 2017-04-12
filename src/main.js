@@ -1,4 +1,6 @@
+var isEqual = require('is-equal');
 var redux = require('redux');
+var watch = require('redux-watch');
 
 var reducers = require('./reducers');
 
@@ -17,6 +19,7 @@ var palette          = require('./redux/palette'),
   var Palette = require('./palette');
   var Preview = require('./preview');
 
+  // Grid //////////////////////////////////////////////////////////////////////
   var grid = new Grid({
     click: function(event) {
       var x = event.clientX - event.target.offsetLeft,
@@ -32,14 +35,20 @@ var palette          = require('./redux/palette'),
 
       store.dispatch(gridActions.fillCell(normalizedX, normalizedY,
        paletteSelectors.pickedColor(store.getState().palette)));
-
-      grid.props.cells = gridSelectors.cells(store.getState().grid);
-      grid.render();
     },
     el: document.getElementById('grid')
   });
   grid.render();
 
+  var cellsWatcher = watch(function() {
+    return gridSelectors.cells(store.getState().grid);
+  }, isEqual);
+  store.subscribe(cellsWatcher(function(newVal) {
+    grid.props.cells = newVal;
+    grid.render();
+  }));
+
+  // Palette ///////////////////////////////////////////////////////////////////
   var palette = new Palette({
     click: function(event) {
       var x = event.clientX - event.target.offsetLeft,
@@ -55,10 +64,6 @@ var palette          = require('./redux/palette'),
 
       var index = normalizedY * 4 + normalizedX;
       store.dispatch(paletteActions.pickColor(index));
-
-      palette.props.pickedColor = paletteSelectors.pickedColor(
-       store.getState().palette);
-      palette.render();
     },
     el: document.getElementsByClassName('palette')[0]
   });
@@ -66,6 +71,15 @@ var palette          = require('./redux/palette'),
    store.getState().palette);
   palette.render();
 
+  var pickedColorWatcher = watch(function() {
+    return paletteSelectors.pickedColor(store.getState().palette);
+  });
+  store.subscribe(pickedColorWatcher(function(newVal) {
+    palette.props.pickedColor = newVal;
+    palette.render();
+  }));
+
+  // Preview ///////////////////////////////////////////////////////////////////
   var preview = new Preview(document.getElementById('preview'));
   preview.render();
 })();
