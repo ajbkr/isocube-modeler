@@ -19,7 +19,6 @@ var palette          = require('./redux/palette'),
   var Palette = require('./palette');
   var Preview = require('./preview');
 
-  // Grid //////////////////////////////////////////////////////////////////////
   var grid = new Grid({
     click: function(event) {
       var x = event.clientX - event.target.offsetLeft,
@@ -40,15 +39,6 @@ var palette          = require('./redux/palette'),
   });
   grid.render();
 
-  var cellsWatcher = watch(function() {
-    return gridSelectors.cells(store.getState().grid);
-  }, isEqual);
-  store.subscribe(cellsWatcher(function(newVal) {
-    grid.props.cells = newVal;
-    grid.render();
-  }));
-
-  // Palette ///////////////////////////////////////////////////////////////////
   var palette = new Palette({
     click: function(event) {
       var x = event.clientX - event.target.offsetLeft,
@@ -71,6 +61,22 @@ var palette          = require('./redux/palette'),
    store.getState().palette);
   palette.render();
 
+  var preview = new Preview({
+    el: document.getElementById('preview')
+  });
+  preview.render();
+
+  var cellsWatcher = watch(function() {
+    return gridSelectors.cells(store.getState().grid);
+  }, isEqual);
+  store.subscribe(cellsWatcher(function(newVal) {
+    grid.props.cells = newVal;
+    grid.render();
+
+    preview.props.cells = newVal;
+    preview.render();
+  }));
+
   var pickedColorWatcher = watch(function() {
     return paletteSelectors.pickedColor(store.getState().palette);
   });
@@ -78,8 +84,4 @@ var palette          = require('./redux/palette'),
     palette.props.pickedColor = newVal;
     palette.render();
   }));
-
-  // Preview ///////////////////////////////////////////////////////////////////
-  var preview = new Preview(document.getElementById('preview'));
-  preview.render();
 })();

@@ -1,31 +1,52 @@
+var Color = require('color');
 var THREE = require('three');
 
-function Preview(el) {
+function Preview(props) {
   var scene = new THREE.Scene();
 
-  var camera = new THREE.PerspectiveCamera(75, el.width / el.height, 1, 10000);
-  camera.position.z = 1000;
+  var camera = new THREE.PerspectiveCamera(75, props.el.width / props.el.height,
+   1, 10000);
+  camera.position.x = 800;
+  camera.position.y = 800;
+  camera.position.z = 3200;
 
-  var geometry = new THREE.BoxGeometry(200, 200, 200);
-  var material = new THREE.MeshBasicMaterial({
-    color: 0xff0000,
-    wireframe: true
-  });
+  var geometry = new THREE.BoxGeometry(100, 100, 100);
 
-  var mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
-
-  var renderer = new THREE.WebGLRenderer({ canvas: el });
+  var renderer = new THREE.WebGLRenderer({ canvas: props.el });
   
   this.camera = camera;
   this.geometry = geometry;
-  this.mesh = mesh;
   this.renderer = renderer;
   this.scene = scene;
+
+  this.props = props;
 }
 
 Preview.prototype.render = function() {
-  this.renderer.render(this.scene, this.camera);
+  var scene = this.scene;
+
+  while (scene.children.length) {
+    scene.remove(scene.children[0]);
+  }
+
+  if (this.props.cells) {
+    for (var y = 0; y < this.props.cells.length; ++y) {
+      for (var x = 0; x < this.props.cells[y].length; ++x) {
+        var color = this.props.cells[y][x];
+
+        if (color) {
+          var material = new THREE.MeshBasicMaterial({
+            color: Color(color).rgbNumber()
+          });
+          var cube = new THREE.Mesh(this.geometry, material);
+          cube.position.set(x * 100, 0, y * 100);
+          scene.add(cube);
+        }
+      }
+    }
+  }
+
+  this.renderer.render(scene, this.camera);
 };
 
 module.exports = Preview;

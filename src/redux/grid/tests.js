@@ -72,8 +72,8 @@ describe('grid', function() {
     });
 
     describe('filledCell', function() {
-      it('should return #ace for the grid cell at (7, 42)', function() {
-        var color = '#ace';
+      it('should return tan for the grid cell at (7, 42)', function() {
+        var color = 'tan';
         var x = 7, y = 42;
 
         var store = createStore(reducer, {

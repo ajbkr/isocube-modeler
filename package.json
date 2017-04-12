@@ -4,7 +4,8 @@
   "description": "In-browser isometric 3D modeler",
   "main": "index.js",
   "scripts": {
-    "browserify": "browserify -g uglifyify src/main.js | uglifyjs -c > dist/bundle.js",
+    "#browserify": "browserify -g uglifyify src/main.js | uglifyjs -c > dist/bundle.js",
+    "browserify": "browserify src/main.js > dist/bundle.js",
     "copy-index": "cpx 'src/index.html' dist/",
     "copy": "npm run copy-index",
     "dist": "mkdir -p dist && npm run browserify && npm run copy",
