@@ -3,5 +3,5 @@ function pickedColor(palette) {
 }
 
 module.exports = {
-  pickedColor
+  pickedColor: pickedColor
 };

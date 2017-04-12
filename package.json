@@ -4,7 +4,7 @@
   "description": "In-browser isometric 3D modeler",
   "main": "index.js",
   "scripts": {
-    "browserify": "browserify src/main.js > dist/bundle.js",
+    "browserify": "browserify -g uglifyify src/main.js | uglifyjs -c > dist/bundle.js",
     "copy-index": "cpx 'src/index.html' dist/",
     "copy": "npm run copy-index",
     "dist": "mkdir -p dist && npm run browserify && npm run copy",
@@ -27,6 +27,8 @@
     "mocha": "^3.2.0",
     "redux": "^3.6.0",
     "redux-watch": "^1.1.1",
-    "three": "^0.84.0"
+    "three": "^0.84.0",
+    "uglify-js": "^2.8.22",
+    "uglifyify": "^3.0.4"
   }
 }

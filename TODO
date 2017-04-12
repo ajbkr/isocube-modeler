@@ -1,4 +1,3 @@
 Remove closure from main.js
-Minify bundle.js
 Replace 'palette' with 'color-picker'?
 	PICK_COLOR/pickColor()

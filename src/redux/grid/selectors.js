@@ -17,6 +17,6 @@ function filledCell(grid, x, y) {
 }
 
 module.exports = {
-  cells,
-  filledCell
+  cells:      cells,
+  filledCell: filledCell
 };
