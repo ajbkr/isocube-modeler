@@ -32,6 +32,10 @@ var palette          = require('./redux/palette'),
 
   var grid = new Grid({
     click: function(event) {
+      if (!(event.buttons & 0x01)) {
+        return;
+      }
+
       var x = event.clientX - event.target.offsetLeft,
           y = event.clientY - event.target.offsetTop;
 
