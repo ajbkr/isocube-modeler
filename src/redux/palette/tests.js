@@ -22,6 +22,17 @@ describe('palette', function() {
 
         expect(nextState.get('color')).to.equal('red');
       });
+
+      it('should pick the clear color (null)', function() {
+        var index = null;
+
+        var store = createStore(reducer);
+
+        store.dispatch(actions.pickColor(index));
+        var nextState = store.getState();
+
+        expect(nextState.get('color')).to.equal(null);
+      });
     });
   });
 

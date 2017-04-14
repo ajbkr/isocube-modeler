@@ -15,9 +15,20 @@ var palette          = require('./redux/palette'),
     paletteSelectors = palette.paletteSelectors;
 
 (function() { 'use strict';
-  var Grid    = require('./grid');
-  var Palette = require('./palette');
-  var Preview = require('./preview');
+  var ClearColor = require('./clear-color');
+  var Grid       = require('./grid');
+  var Palette    = require('./palette');
+  var Preview    = require('./preview');
+
+  var clearColor = new ClearColor({
+    click: function(event) {
+      store.dispatch(paletteActions.pickColor(null));
+    },
+    el: document.getElementsByClassName('clear-color')[0]
+  });
+  clearColor.props.pickedColor = paletteSelectors.pickedColor(
+   store.getState().palette);
+  clearColor.render();
 
   var grid = new Grid({
     click: function(event) {
@@ -81,6 +92,9 @@ var palette          = require('./redux/palette'),
     return paletteSelectors.pickedColor(store.getState().palette);
   });
   store.subscribe(pickedColorWatcher(function(newVal) {
+    clearColor.props.pickedColor = newVal;
+    clearColor.render();
+
     palette.props.pickedColor = newVal;
     palette.render();
   }));

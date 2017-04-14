@@ -22,7 +22,7 @@ function pickColor(index) {
 
   return {
     type:  types.PICK_COLOR,
-    color: colors[index]
+    color: colors[index] || null
   };
 }
 
