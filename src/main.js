@@ -15,10 +15,11 @@ var palette          = require('./redux/palette'),
     paletteSelectors = palette.paletteSelectors;
 
 (function() { 'use strict';
-  var ClearColor = require('./clear-color');
-  var Grid       = require('./grid');
-  var Palette    = require('./palette');
-  var Preview    = require('./preview');
+  var ClearColor = require('./components/clear-color');
+  var Grid       = require('./components/grid');
+  var Palette    = require('./components/palette');
+  var Preview    = require('./components/preview');
+  var RangeY     = require('./components/range-y');
 
   var clearColor = new ClearColor({
     click: function(event) {
@@ -82,8 +83,15 @@ var palette          = require('./redux/palette'),
   });
   preview.render();
 
+  var rangeY = new RangeY({
+    change: function(event) {
+      store.dispatch(gridActions.setY(event.target.value));
+    },
+    el: document.getElementsByClassName('range-y')[0]
+  });
+
   var cellsWatcher = watch(function() {
-    return gridSelectors.cellsY(store.getState().grid);
+    return gridSelectors.cells(store.getState().grid);
   }, isEqual);
   store.subscribe(cellsWatcher(function(newVal) {
     grid.props.cells = newVal;
@@ -102,5 +110,13 @@ var palette          = require('./redux/palette'),
 
     palette.props.pickedColor = newVal;
     palette.render();
+  }));
+
+  var yWatcher = watch(function() {
+    return gridSelectors.y(store.getState().grid);
+  });
+  store.subscribe(yWatcher(function(newVal) {
+    grid.props.y = newVal;
+    grid.render();
   }));
 })();
