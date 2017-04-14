@@ -6,13 +6,16 @@ function Preview(props) {
 
   var camera = new THREE.PerspectiveCamera(75, props.el.width / props.el.height,
    1, 10000);
-  camera.position.x = 800;
-  camera.position.y = 800;
-  camera.position.z = 3200;
+  camera.position.x = 750;
+  camera.position.y = 750;
+  camera.position.z = 3150;
 
   var geometry = new THREE.BoxGeometry(100, 100, 100);
 
-  var renderer = new THREE.WebGLRenderer({ canvas: props.el });
+  var renderer = new THREE.WebGLRenderer({
+    alpha: true,
+    canvas: props.el
+  });
   
   this.camera = camera;
   this.geometry = geometry;
@@ -23,16 +26,18 @@ function Preview(props) {
 }
 
 Preview.prototype.render = function() {
+  var cells = this.props.cells;
+
   var scene = this.scene;
 
   while (scene.children.length) {
     scene.remove(scene.children[0]);
   }
 
-  if (this.props.cells) {
-    for (var y = 0; y < this.props.cells.length; ++y) {
-      for (var x = 0; x < this.props.cells[y].length; ++x) {
-        var color = this.props.cells[y][x];
+  if (cells) {
+    for (var y = 0; y < cells.length; ++y) {
+      for (var x = 0; x < cells[y].length; ++x) {
+        var color = cells[y][x];
 
         if (color) {
           var material = new THREE.MeshBasicMaterial({
