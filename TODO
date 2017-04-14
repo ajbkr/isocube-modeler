@@ -1,3 +1,4 @@
+Improve comparison (isEqual) and cells()/cellsY() selectors' performance
 Remove closure from main.js
 Replace 'palette' with 'color-picker'?
 	PICK_COLOR/pickColor()

@@ -23,13 +23,13 @@ Grid.prototype.render = function() {
   }
 
   if (this.props.cells) {
-    for (y = 0; y < this.props.cells.length; ++y) {
-      for (x = 0; x < this.props.cells[y].length; ++x) {
-        var color = this.props.cells[y][x];
+    for (var z = 0; z < this.props.cells.length; ++z) {
+      for (x = 0; x < this.props.cells[z].length; ++x) {
+        var color = this.props.cells[z][this.props.y][x];
 
         if (color) {
           ctx.fillStyle = color;
-          ctx.fillRect(x * 16 + 1, y * 16 + 1, 15, 15);
+          ctx.fillRect(x * 16 + 1, z * 16 + 1, 15, 15);
         }
       }
     }

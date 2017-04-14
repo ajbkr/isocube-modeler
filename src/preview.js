@@ -17,10 +17,10 @@ function Preview(props) {
     canvas: props.el
   });
   
-  this.camera = camera;
+  this.camera   = camera;
   this.geometry = geometry;
   this.renderer = renderer;
-  this.scene = scene;
+  this.scene    = scene;
 
   this.props = props;
 }
@@ -35,17 +35,19 @@ Preview.prototype.render = function() {
   }
 
   if (cells) {
-    for (var y = 0; y < cells.length; ++y) {
-      for (var x = 0; x < cells[y].length; ++x) {
-        var color = cells[y][x];
+    for (var z = 0; z < cells.length; ++z) {
+      for (var y = 0; y < cells[z].length; ++y) {
+        for (var x = 0; x < cells[z][y].length; ++x) {
+          var color = cells[z][y][x];
 
-        if (color) {
-          var material = new THREE.MeshBasicMaterial({
-            color: Color(color).rgbNumber()
-          });
-          var cube = new THREE.Mesh(this.geometry, material);
-          cube.position.set(x * 100, 0, y * 100);
-          scene.add(cube);
+          if (color) {
+            var material = new THREE.MeshBasicMaterial({
+              color: Color(color).rgbNumber()
+            });
+            var cube = new THREE.Mesh(this.geometry, material);
+            cube.position.set(x * 100, y * 100, z * 100);
+            scene.add(cube);
+          }
         }
       }
     }

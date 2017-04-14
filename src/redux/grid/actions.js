@@ -17,7 +17,15 @@ function fillCell(x, y, color) {
   };
 }
 
+function setY(y) {
+  return {
+    type: types.SET_Y,
+    y:    y
+  };
+}
+
 module.exports = {
   clearCell: clearCell,
-  fillCell:  fillCell
+  fillCell:  fillCell,
+  setY:      setY
 };

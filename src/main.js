@@ -52,6 +52,7 @@ var palette          = require('./redux/palette'),
     },
     el: document.getElementById('grid')
   });
+  grid.props.y = gridSelectors.y(store.getState().grid);
   grid.render();
 
   var palette = new Palette({
@@ -82,7 +83,7 @@ var palette          = require('./redux/palette'),
   preview.render();
 
   var cellsWatcher = watch(function() {
-    return gridSelectors.cells(store.getState().grid);
+    return gridSelectors.cellsY(store.getState().grid);
   }, isEqual);
   store.subscribe(cellsWatcher(function(newVal) {
     grid.props.cells = newVal;
