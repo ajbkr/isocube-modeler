@@ -38,18 +38,20 @@ footer { font-size: 0.6rem }
 
 /******************************************************************************/
 
-h6 { margin-bottom: 0.5rem }
+h4 { margin-bottom: 0.5rem }
 
 #grid {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJ0lEQVQYV2M8c+bM//T0dAYYYDQ2Nv4P5zEwMMAFZs6cyQBSiaECAP+NDGXeWMzVAAAAAElFTkSuQmCC) repeat;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
-  cursor: crosshair
+  cursor: crosshair;
+  display: block
 }
 
 .palette {
   border-bottom: 1px solid #000;
-  border-right: 1px solid #000
+  border-right: 1px solid #000;
+  display: block
 }
 
 .clear-color {
@@ -62,6 +64,15 @@ h6 { margin-bottom: 0.5rem }
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJ0lEQVQYV2M8c+bM//T0dAYYYDQ2Nv4P5zEwMMAFZs6cyQBSiaECAP+NDGXeWMzVAAAAAElFTkSuQmCC) repeat;
   border: 1px solid #000;
 }
+
+.range-y { height: 21px }
+
+.y-label,
+.y-value {
+  display: inline-block;
+  height: 21px;
+  vertical-align: text-bottom
+}
 </style>
     <title>Isocube Modeler</title>
   </head>
@@ -71,25 +82,27 @@ h6 { margin-bottom: 0.5rem }
     </header>
     <div id="main">
       <article>
-        <h6>Grid</h6>
+        <h4>Grid &raquo; x-z Plane</h4>
         <canvas id="grid" width="256" height="256">
           ...
         </canvas>
+        <span class="y-label">y:</span>
         <input class="range-y" type="range" min="0" max="15" value="0" />
+        <span class="y-value"></span>
       </article>
       <nav>
         <div id="color-picker">
-          <h6>Palette</h6>
+          <h4>Palette</h4>
           <canvas class="palette" width="128" height="128">
             ...
           </canvas>
-          <canvas class="clear-color" width="32" height="32">
+          <canvas class="clear-color" width="32" height="31">
             ...
           </canvas>
         </div>
       </nav>
       <aside>
-        <h6>Preview</h6>
+        <h4>Preview &raquo; Perspective</h4>
         <canvas id="preview" width="480" height="360">
           ...
         </canvas>

@@ -89,6 +89,8 @@ var palette          = require('./redux/palette'),
     },
     el: document.getElementsByClassName('range-y')[0]
   });
+  var yValue = document.getElementsByClassName('y-value')[0];
+  yValue.innerHTML = gridSelectors.y(store.getState().grid);
 
   var cellsWatcher = watch(function() {
     return gridSelectors.cells(store.getState().grid);
@@ -118,5 +120,7 @@ var palette          = require('./redux/palette'),
   store.subscribe(yWatcher(function(newVal) {
     grid.props.y = newVal;
     grid.render();
+
+    yValue.innerHTML = newVal;
   }));
 })();

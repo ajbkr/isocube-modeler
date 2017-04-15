@@ -16,9 +16,18 @@ Grid.prototype.render = function() {
 
   ctx.fillStyle = '#000';
   for (var y = 0; y < ctx.canvas.height; y += ctx.canvas.height / 16) {
+    if (y === ctx.canvas.height / 16) {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    }
+
     ctx.fillRect(0, y, ctx.canvas.width, 1);
   }
+  ctx.fillStyle = '#000';
   for (var x = 0; x < ctx.canvas.width; x += ctx.canvas.width / 16) {
+    if (x === ctx.canvas.width / 16) {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    }
+
     ctx.fillRect(x, 0, 1, ctx.canvas.height);
   }
 

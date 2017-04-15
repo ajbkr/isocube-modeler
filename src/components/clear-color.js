@@ -17,12 +17,11 @@ ClearColor.prototype.render = function() {
   ctx.clearRect(0, 0, width, height);
 
   ctx.fillStyle = '#000';
-  ctx.fillRect(0, 0, width, 1);
   ctx.fillRect(0, 0, 1, height);
 
   if (this.props.pickedColor === null) {
     ctx.fillStyle = '#fff';
-    ctx.fillRect(1, 1, width - 1, 1);
+    ctx.fillRect(1, 0, width - 1, 1);
     ctx.fillRect(1, 1, 1, height - 1);
     ctx.fillRect(width - 1, 1, 1, height - 1);
     ctx.fillRect(1, height - 1, width - 1, 1);
