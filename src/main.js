@@ -41,8 +41,8 @@ var preview          = require('./redux/preview'),
         return;
       }
 
-      var x = event.clientX - event.target.offsetLeft,
-          y = event.clientY - event.target.offsetTop;
+      var x = event.clientX - event.target.offsetLeft + document.body.scrollLeft,
+          y = event.clientY - event.target.offsetTop  + document.body.scrollTop;
 
       var clampedX = (x >= event.target.width)  ? (event.target.width  - 1) :
            (x),
@@ -62,8 +62,8 @@ var preview          = require('./redux/preview'),
 
   var palette = new Palette({
     click: function(event) {
-      var x = event.clientX - event.target.offsetLeft,
-          y = event.clientY - event.target.offsetTop;
+      var x = event.clientX - event.target.offsetLeft + document.body.scrollLeft,
+          y = event.clientY - event.target.offsetTop  + document.body.scrollTop;
 
       var clampedX = (x >= event.target.width)  ? (event.target.width  - 1) :
            (x),
