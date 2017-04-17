@@ -54,7 +54,7 @@ Preview.prototype.render = function() {
           var color = cells[z][y][x];
 
           if (color) {
-            var material = new THREE.MeshBasicMaterial({
+            var material = new THREE.MeshLambertMaterial({
               color: Color(color).rgbNumber()
             });
             var cube = new THREE.Mesh(this.geometry, material);
@@ -65,6 +65,11 @@ Preview.prototype.render = function() {
       }
     }
   }
+
+  var directionalLight = new THREE.DirectionalLight(0x00ffffff, 1.5);
+  directionalLight.position.set(-2000, 2500, 3000);
+  directionalLight.target.position.set(800, 0, 800);
+  scene.add(directionalLight);
 
   var camera = this.cameras[this.props.projection];
   camera.lookAt(new THREE.Vector3(0, 0, 0));

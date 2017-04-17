@@ -37,7 +37,7 @@ var preview          = require('./redux/preview'),
 
   var grid = new Grid({
     click: function(event) {
-      if (!(event.buttons & 0x01)) {
+      if ( !(event.buttons & 0x01)) {
         return;
       }
 
