@@ -7,15 +7,15 @@ var reducers = require('./reducers');
 
 var store = redux.createStore(reducers);
 
-var grid          = require('./redux/grid'),
+var grid          = require('./ducks/grid'),
     gridActions   = grid.gridActions,
     gridSelectors = grid.gridSelectors;
 
-var palette          = require('./redux/palette'),
+var palette          = require('./ducks/palette'),
     paletteActions   = palette.paletteActions,
     paletteSelectors = palette.paletteSelectors;
 
-var preview          = require('./redux/preview'),
+var preview          = require('./ducks/preview'),
     previewActions   = preview.previewActions,
     previewSelectors = preview.previewSelectors;
 

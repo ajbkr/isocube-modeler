@@ -1,8 +1,8 @@
 var redux = require('redux');
 
-var grid    = require('./redux/grid').reducer,
-    palette = require('./redux/palette').reducer,
-    preview = require('./redux/preview').reducer;
+var grid    = require('./ducks/grid').reducer,
+    palette = require('./ducks/palette').reducer,
+    preview = require('./ducks/preview').reducer;
 
 module.exports = redux.combineReducers({
   grid:    grid,

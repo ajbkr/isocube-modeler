@@ -1,3 +1,3 @@
-require('../src/redux/grid/tests');
-require('../src/redux/palette/tests');
-require('../src/redux/preview/tests');
+require('../src/ducks/grid/tests');
+require('../src/ducks/palette/tests');
+require('../src/ducks/preview/tests');
