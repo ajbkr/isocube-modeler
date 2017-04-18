@@ -1,4 +1,5 @@
 var isEqual = require('is-equal');
+var offset = require('mouse-event-offset');
 var redux = require('redux');
 var watch = require('redux-watch');
 
@@ -41,12 +42,14 @@ var preview          = require('./redux/preview'),
         return;
       }
 
-      var x = event.clientX - event.target.offsetLeft + document.body.scrollLeft,
-          y = event.clientY - event.target.offsetTop  + document.body.scrollTop;
+      var position = offset(event);
 
-      var clampedX = (x >= event.target.width)  ? (event.target.width  - 1) :
+      var x = position[0],
+          y = position[1];
+
+      var clampedX = (x >= event.target.width)  ?  (event.target.width  - 1) :
            (x),
-          clampedY = (y >= event.target.height) ? (event.target.height - 1) :
+          clampedY = (y >= event.target.height) ?  (event.target.height - 1) :
            (y);
 
       var normalizedX = Math.floor(clampedX / 16),
@@ -62,8 +65,10 @@ var preview          = require('./redux/preview'),
 
   var palette = new Palette({
     click: function(event) {
-      var x = event.clientX - event.target.offsetLeft + document.body.scrollLeft,
-          y = event.clientY - event.target.offsetTop  + document.body.scrollTop;
+      var position = offset(event);
+
+      var x = position[0],
+          y = position[1];
 
       var clampedX = (x >= event.target.width)  ? (event.target.width  - 1) :
            (x),
