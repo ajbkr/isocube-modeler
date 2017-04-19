@@ -1,8 +1,6 @@
 function ClearColor(props) {
   var ctx = props.el.getContext('2d');
 
-  props.el.addEventListener('click', props.click);
-
   this.ctx = ctx;
 
   this.props = props;

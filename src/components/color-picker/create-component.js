@@ -1,8 +1,10 @@
 var component = require('./component');
 
-var createComponent = function() {
+var createComponent = function(props) {
   return {
-    renderMaquette: component.renderMaquette
+    renderMaquette: function() {
+      return component.renderMaquette(props)
+    }
   };
 };
 

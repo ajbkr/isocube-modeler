@@ -16,7 +16,11 @@ describe('colorPicker', function() {
         canvasClearColor = projector.query('canvas.clear-color');
 
     beforeEach(function() {
-      colorPickerComponent = createComponent();
+      colorPickerComponent = createComponent({
+        clearColor: {
+          onclick: function() {}
+        }
+      });
       projector.initialize(colorPickerComponent.renderMaquette);
     });
 

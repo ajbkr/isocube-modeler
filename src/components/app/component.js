@@ -6,9 +6,9 @@ var grid        = require('../grid/index');	// XXX -index
 var preview     = require('../preview/index');	// XXX -index
 
 var app = {
-  renderMaquette: function() {
+  renderMaquette: function(props) {
     return h('div#app', [
-      colorPicker.component.renderMaquette(),
+      colorPicker.component.renderMaquette(props.colorPicker),
       grid.component.renderMaquette(),
       preview.component.renderMaquette()
     ]);

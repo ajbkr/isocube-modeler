@@ -29,7 +29,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   appEl.removeChild(document.getElementsByClassName('loading')[0]);
 
-  projector.append(appEl, app.createComponent().renderMaquette);
+  projector.append(appEl, app.createComponent({
+    colorPicker: {
+      clearColor: {
+        onclick: function(event) {
+          store.dispatch(paletteActions.pickColor(null));
+        }
+      }
+    }
+  }).renderMaquette);
 
   var ClearColor = require('./components/clear-color');
   var Grid       = require('./components/grid');
@@ -38,9 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var RangeY     = require('./components/range-y');
 
   var clearColor = new ClearColor({
-    click: function(event) {
-      store.dispatch(paletteActions.pickColor(null));
-    },
     el: document.getElementsByClassName('clear-color')[0]
   });
   clearColor.props.pickedColor = paletteSelectors.pickedColor(
