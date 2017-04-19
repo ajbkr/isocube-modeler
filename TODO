@@ -1,4 +1,10 @@
+Add "Clear Plane" button
+Onion skin layer below
+Add "Fill Plane" button
+Add "Apply Noise" button
 Improve comparison (isEqual) and cells()/cellsY() selectors' performance
-Remove closure from main.js
 Replace 'palette' with 'color-picker'?
 	PICK_COLOR/pickColor()
+216-color palette
+Dry palette
+Wet palette (persist to localStorage)

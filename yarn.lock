@@ -1660,6 +1660,14 @@ magic-string@^0.19.0:
   dependencies:
     vlq "^0.2.1"
 
+maquette-query@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/maquette-query/-/maquette-query-0.11.2.tgz#5b2dceb68324c1eb04ea16b0d49446628f08802b"
+
+maquette@^2.4.5:
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/maquette/-/maquette-2.4.5.tgz#1426387dc23f0f21071a66c02c472e9931b0ea48"
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"

@@ -1,4 +1,5 @@
 var isEqual = require('is-equal');
+var maquette = require('maquette');
 var offset = require('mouse-event-offset');
 var redux = require('redux');
 var watch = require('redux-watch');
@@ -19,7 +20,17 @@ var preview          = require('./ducks/preview'),
     previewActions   = preview.previewActions,
     previewSelectors = preview.previewSelectors;
 
-(function() { 'use strict';
+var app = require('./components/app');
+
+document.addEventListener('DOMContentLoaded', function() {
+  var projector = maquette.createProjector();
+
+  var appEl = document.getElementById('app');
+
+  appEl.removeChild(document.getElementsByClassName('loading')[0]);
+
+  projector.append(appEl, app.createComponent().renderMaquette);
+
   var ClearColor = require('./components/clear-color');
   var Grid       = require('./components/grid');
   var Palette    = require('./components/palette');
@@ -111,6 +122,8 @@ var preview          = require('./ducks/preview'),
   var yValue = document.getElementsByClassName('y-value')[0];
   yValue.innerHTML = gridSelectors.y(store.getState().grid);
 
+  // Watchers //////////////////////////////////////////////////////////////////
+
   var cellsWatcher = watch(function() {
     return gridSelectors.cells(store.getState().grid);
   }, isEqual);
@@ -152,4 +165,4 @@ var preview          = require('./ducks/preview'),
 
     yValue.innerHTML = newVal;
   }));
-})();
+});
