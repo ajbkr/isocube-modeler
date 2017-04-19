@@ -17,7 +17,11 @@ describe('grid', function() {
         spanYValue  = projector.query('span.y-value');
 
     beforeEach(function() {
-      gridComponent = createComponent();
+      gridComponent = createComponent({
+        canvasGrid: {
+          onclick: function() {}
+        }
+      });
       projector.initialize(gridComponent.renderMaquette);
     });
 

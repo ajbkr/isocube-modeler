@@ -9,7 +9,7 @@ var app = {
   renderMaquette: function(props) {
     return h('div#app', [
       colorPicker.component.renderMaquette(props.colorPicker),
-      grid.component.renderMaquette(),
+      grid.component.renderMaquette(props.grid),
       preview.component.renderMaquette()
     ]);
   }

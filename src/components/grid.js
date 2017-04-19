@@ -1,9 +1,6 @@
 function Grid(props) {
   var ctx = props.el.getContext('2d');
 
-  props.el.addEventListener('mousedown', props.click);
-  props.el.addEventListener('mousemove', props.click);
-
   this.ctx = ctx;
 
   this.props = props;
