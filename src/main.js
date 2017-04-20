@@ -1,6 +1,5 @@
 var isEqual = require('is-equal');
 var maquette = require('maquette');
-var offset = require('mouse-event-offset');
 var redux = require('redux');
 var watch = require('redux-watch');
 
@@ -22,27 +21,8 @@ var preview          = require('./ducks/preview'),
 
 var app = require('./components/app');
 
-function mouseEventCanvasGrid(event) {
-  if ( !(event.buttons & 0x01)) {
-    return;
-  }
-
-  var position = offset(event);
-
-  var x = position[0],
-      y = position[1];
-
-  var clampedX = (x >= event.target.width)  ?  (event.target.width  - 1) :
-       (x),
-      clampedY = (y >= event.target.height) ?  (event.target.height - 1) :
-       (y);
-
-  var normalizedX = Math.floor(clampedX / 16),
-      normalizedY = Math.floor(clampedY / 16);
-
-  store.dispatch(gridActions.fillCell(normalizedX, normalizedY,
-   paletteSelectors.pickedColor(store.getState().palette)));
-}
+var mouseEventCanvasGrid = require('./mouse-event-canvas-grid')(store);
+var mouseEventCanvasPalette = require('./mouse-event-canvas-palette')(store);
 
 document.addEventListener('DOMContentLoaded', function() {
   var projector = maquette.createProjector();
@@ -53,8 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var appComponent = app.createComponent({
     colorPicker: {
+      canvasPalette: {
+        onclick: mouseEventCanvasPalette
+      },
       clearColor: {
-        onclick: function(event) {
+        onclick: function() {
           store.dispatch(paletteActions.pickColor(null));
         }
       }
@@ -89,23 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
   grid.render();
 
   var palette = new Palette({
-    click: function(event) {
-      var position = offset(event);
-
-      var x = position[0],
-          y = position[1];
-
-      var clampedX = (x >= event.target.width)  ? (event.target.width  - 1) :
-           (x),
-          clampedY = (y >= event.target.height) ? (event.target.height - 1) :
-           (y);
-
-      var normalizedX = Math.floor(clampedX / 32),
-          normalizedY = Math.floor(clampedY / 32);
-
-      var index = normalizedY * 4 + normalizedX;
-      store.dispatch(paletteActions.pickColor(index));
-    },
     el: document.getElementsByClassName('palette')[0]
   });
   palette.props.pickedColor = paletteSelectors.pickedColor(

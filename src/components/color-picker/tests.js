@@ -17,6 +17,9 @@ describe('colorPicker', function() {
 
     beforeEach(function() {
       colorPickerComponent = createComponent({
+        canvasPalette: {
+          onclick: function() {}
+        },
         clearColor: {
           onclick: function() {}
         }
