@@ -16,25 +16,25 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "serve": "^5.1.4"
+    "serve": "^6.0.1"
   },
   "devDependencies": {
-    "browserify": "^14.3.0",
-    "chai": "^3.5.0",
-    "color": "^1.0.3",
+    "browserify": "^14.4.0",
+    "chai": "^4.0.2",
+    "color": "^2.0.0",
     "cpx": "^1.5.0",
     "deep-assign": "^2.0.0",
     "immutable": "^3.8.1",
     "is-equal": "^1.5.5",
-    "maquette": "^2.4.5",
+    "maquette": "^2.5.2",
     "maquette-query": "^0.11.2",
-    "mocha": "^3.2.0",
+    "mocha": "^3.4.2",
     "mouse-event-offset": "^3.0.2",
-    "redux": "^3.6.0",
+    "redux": "^3.7.1",
     "redux-watch": "^1.1.1",
-    "sinon": "^2.1.0",
-    "three": "^0.84.0",
-    "uglify-js": "^2.8.22",
-    "uglifyify": "^3.0.4"
+    "sinon": "^2.3.6",
+    "three": "^0.86.0",
+    "uglify-js": "2.8.29",
+    "uglifyify": "3.0.4"
   }
 }
