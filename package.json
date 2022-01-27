@@ -33,7 +33,7 @@
     "redux": "^4.0.4",
     "redux-watch": "^1.1.1",
     "sinon": "^7.4.2",
-    "three": "^0.108.0",
+    "three": "^0.137.0",
     "uglify-js": "2.8.29",
     "uglifyify": "3.0.4"
   }
